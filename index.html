@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paulo Proni — Portfólio Executivo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600&family=Lora:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14181D; --ink-soft:#525B57; --paper:#F4F4F0; --paper-card:#EAEBE4;
+    --line:#D2D5CC; --amber:#B4772A; --amber-deep:#8F5C1E; --teal:#3A5F58;
+    --navy:#171E27; --navy-soft:#212B38; --white:#FAFAF7;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Lora',serif; color:var(--ink); background:var(--paper); font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased;}
+  h1,h2,h3,.label,nav,button{font-family:'Poppins',sans-serif;}
+  .micro{font-family:'Barlow Condensed',sans-serif; letter-spacing:.03em;}
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+  .wrap{max-width:1080px; margin:0 auto; padding:0 32px;}
+  section{padding:96px 0;}
+  @media(max-width:720px){ section{padding:64px 0;} .wrap{padding:0 22px;} }
+
+  /* ---------------- NAV ---------------- */
+  nav.topnav{position:fixed; top:0; left:0; right:0; z-index:50; padding:22px 0; transition:background .25s ease, padding .25s ease, border-color .25s ease; border-bottom:1px solid transparent;}
+  nav.topnav.solid{background:rgba(244,244,240,.92); backdrop-filter:blur(6px); padding:14px 0; border-color:var(--line);}
+  nav .wrap{display:flex; align-items:center; justify-content:space-between;}
+  .brand{font-weight:600; font-size:15px; letter-spacing:.01em; color:var(--white);}
+  nav.topnav.solid .brand{color:var(--ink);}
+  .navlinks{display:flex; gap:30px; list-style:none;}
+  .navlinks a{font-size:13.5px; font-weight:500; color:rgba(250,250,247,.82); text-decoration:none; transition:color .2s;}
+  nav.topnav.solid .navlinks a{color:var(--ink-soft);}
+  .navlinks a:hover{color:var(--amber);}
+  .nav-toggle{display:none; flex-direction:column; gap:4px; background:none; border:none; cursor:pointer; padding:6px;}
+  .nav-toggle span{width:22px; height:2px; background:var(--white);}
+  nav.topnav.solid .nav-toggle span{background:var(--ink);}
+  @media(max-width:760px){
+    .navlinks{position:fixed; top:0; right:0; height:100vh; width:min(76vw,300px); background:var(--navy); flex-direction:column; justify-content:center; gap:26px; padding:40px; transform:translateX(100%); transition:transform .3s ease; box-shadow:-8px 0 30px rgba(0,0,0,.25);}
+    .navlinks.open{transform:translateX(0);}
+    .navlinks a{color:var(--white); font-size:16px;}
+    .nav-toggle{display:flex;}
+  }
+
+  /* ---------------- HERO ---------------- */
+  .hero{background:var(--navy); color:var(--white); padding:168px 0 0 0; position:relative; overflow:hidden;}
+  .hero-inner{position:relative; z-index:2; padding-bottom:64px;}
+  .kicker{font-size:14px; color:#9BB0A8; margin-bottom:22px;}
+  .hero h1{font-size:clamp(34px,5.4vw,58px); font-weight:600; line-height:1.1; max-width:15ch; letter-spacing:-0.01em;}
+  .hero .sub{font-style:italic; font-size:17px; color:#C7CCC3; max-width:46ch; margin-top:20px;}
+  .current-tag{margin-top:34px; border-left:2px solid var(--amber); padding-left:16px; font-size:14px; line-height:1.7; color:#DEE1DA; max-width:44ch;}
+  .current-tag b{color:var(--white); font-weight:500;}
+
+  .stat-row{display:flex; border-top:1px solid #38414D; margin-top:60px; flex-wrap:wrap;}
+  .stat-cell{flex:1 1 180px; padding:26px 26px 34px 0; border-left:1px solid #38414D; padding-left:26px;}
+  .stat-cell:first-child{border-left:none; padding-left:0;}
+  .stat-cell .n{font-size:30px; font-weight:600; color:var(--amber);}
+  .stat-cell .l{font-size:14px; color:#9EA8A3; margin-top:6px; line-height:1.4;}
+
+  .topo-wrap{position:absolute; top:0; right:0; bottom:0; width:min(46vw,520px); opacity:.95; z-index:1;}
+  @media(max-width:760px){ .topo-wrap{opacity:.35; width:100%;} }
+
+  /* ---------------- SECTION HEAD ---------------- */
+  .shead{display:flex; align-items:baseline; gap:14px; border-bottom:1px solid var(--line); padding-bottom:14px; margin-bottom:40px;}
+  .shead .num{font-size:13px; color:var(--ink-soft);}
+  .shead h2{font-size:26px; font-weight:600; letter-spacing:-0.01em;}
+
+  /* ---------------- PERFIL ---------------- */
+  #perfil{background:var(--paper);}
+  .intro{font-size:17.5px; max-width:64ch; line-height:1.8;}
+  .intro .drop{font-family:'Poppins'; font-weight:600; font-size:19px;}
+
+  .scope-grid{display:flex; flex-wrap:wrap; border-top:1px solid var(--line); margin-top:44px;}
+  .scope-cell{flex:1 1 150px; border-bottom:1px solid var(--line); border-right:1px solid var(--line); padding:22px 18px 22px 0;}
+  .scope-cell:last-child{border-right:none;}
+  .scope-cell .n{font-family:'Poppins'; font-weight:600; font-size:26px;}
+  .scope-cell .l{font-size:12.5px; color:var(--ink-soft); margin-top:6px; letter-spacing:.02em;}
+
+  .env-strip{margin-top:32px; border-left:2px solid var(--teal); padding-left:16px; font-size:14.5px; color:var(--ink-soft); max-width:64ch; line-height:1.7;}
+
+  .blocks{display:flex; flex-wrap:wrap; gap:40px; margin-top:52px;}
+  .block{flex:1 1 260px;}
+  .block h3{font-size:15.5px; font-weight:600; margin-bottom:10px; display:flex; align-items:center; gap:10px;}
+  .node-mark{width:7px; height:7px; background:var(--amber); transform:rotate(45deg); flex:none;}
+  .block p{font-size:14.5px; color:var(--ink-soft); line-height:1.7;}
+
+  /* ---------------- TRAJETORIA ---------------- */
+  #trajetoria{background:var(--paper-card);}
+  .tl{position:relative; padding-left:8px; max-width:70ch;}
+  .tl::before{content:""; position:absolute; left:1px; top:6px; bottom:6px; width:1px; background:var(--line);}
+  .tl-item{position:relative; padding:0 0 34px 30px;}
+  .tl-item::before{content:""; position:absolute; left:-4px; top:4px; width:9px; height:9px; border-radius:50%; border:2px solid var(--amber); background:var(--paper-card);}
+  .tl-item.current::before{border-color:var(--teal); background:var(--teal);}
+  .tl-item .period{font-size:13px; color:var(--amber-deep); font-weight:600;}
+  .tl-item .org{font-family:'Poppins'; font-weight:600; font-size:18px; margin-top:4px;}
+  .tl-item.current .org{color:var(--teal);}
+  .tl-item .role{font-style:italic; color:var(--ink-soft); font-size:14.5px; margin-top:2px;}
+  .tl-item .role.ph{color:var(--amber-deep); font-style:italic;}
+
+  .edu-row{display:flex; flex-wrap:wrap; gap:28px; margin-top:44px; border-top:1px solid var(--line); padding-top:36px;}
+  .edu-item{flex:1 1 220px;}
+  .edu-item .deg{font-family:'Poppins'; font-weight:600; font-size:15px;}
+  .edu-item .inst{font-style:italic; color:var(--ink-soft); font-size:13.5px; margin-top:3px;}
+  .edu-item .per{font-size:12.5px; color:var(--amber-deep); margin-top:4px;}
+
+  /* ---------------- CASES ---------------- */
+  #cases{background:var(--paper);}
+  .case{padding:44px 0;}
+  .case + .case{border-top:1px solid var(--line);}
+  .case-title{font-family:'Poppins'; font-weight:600; font-size:20px;}
+  .case-context{font-style:italic; color:var(--ink-soft); font-size:14px; margin-top:4px;}
+
+  .pae{display:flex; flex-wrap:wrap; gap:24px; margin-top:24px; border-top:1px solid var(--line); padding-top:22px;}
+  .pae-col{flex:1 1 220px; border-left:2px solid var(--paper-card); padding-left:16px;}
+  .pae-col:first-child{border-left:2px solid var(--amber);}
+  .pae-col .lab{font-size:13px; color:var(--teal); font-weight:600; margin-bottom:6px;}
+  .pae-col p{font-size:14px; color:var(--ink); line-height:1.6;}
+
+  .metric-bar{position:relative; height:56px; margin:34px 40px 8px 4px; max-width:520px;}
+  .metric-bar .track{position:absolute; top:26px; left:0; right:0; border-top:2px solid var(--amber);}
+  .metric-bar .node{position:absolute; top:22px; width:9px; height:9px; border-radius:50%; background:var(--paper); border:2px solid var(--amber);}
+  .metric-bar .node.start{left:-5px;} .metric-bar .node.end{right:-5px; background:var(--amber);}
+  .metric-bar .val{position:absolute; top:-4px; font-family:'Poppins'; font-weight:600; font-size:19px;}
+  .metric-bar .val.start{left:0;} .metric-bar .val.end{right:0; text-align:right; color:var(--amber-deep);}
+  .metric-bar .cap{position:absolute; top:36px; left:0; right:0; text-align:center; font-size:12.5px; color:var(--ink-soft); letter-spacing:.02em;}
+
+  .chips{margin-top:14px; display:flex; flex-wrap:wrap; gap:10px;}
+  .chip{border:1px solid var(--line); background:var(--paper-card); padding:8px 14px; font-size:13px;}
+  .chip b{font-family:'Poppins'; font-weight:600; color:var(--amber-deep); font-size:14.5px;}
+
+  .fronts{display:flex; flex-wrap:wrap; gap:10px 40px; margin-top:22px; border-top:1px solid var(--line); padding-top:24px;}
+  .front-item{font-size:14px; padding-left:16px; position:relative; flex:1 1 260px;}
+  .front-item::before{content:""; position:absolute; left:0; top:7px; width:6px; height:6px; background:var(--teal); transform:rotate(45deg);}
+
+  /* ---------------- DATA CENTER ---------------- */
+  #datacenter{background:var(--navy); color:var(--white);}
+  #datacenter .shead{border-color:#38414D;}
+  #datacenter .shead .num{color:#9EA8A3;}
+  #datacenter .case-context{color:#B7BDB6;}
+  #datacenter .pae{border-color:#38414D;}
+  #datacenter .pae-col{border-left-color:#2E3846;}
+  #datacenter .pae-col:first-child{border-left-color:var(--amber);}
+  #datacenter .pae-col p{color:#DEE1DA;}
+  #datacenter .chip{background:#212B38; border-color:#38414D; color:#DEE1DA;}
+  #datacenter p.note{color:#B7BDB6; font-size:14px; max-width:70ch; margin-top:28px; line-height:1.7;}
+
+  .status-tag{display:inline-block; font-size:12.5px; letter-spacing:.03em; border:1px solid var(--teal); color:#8FBBB0; padding:6px 14px; margin-bottom:26px;}
+
+  /* ---------------- CONTATO / FOOTER ---------------- */
+  #contato{background:var(--paper-card);}
+  .contact-grid{display:flex; flex-wrap:wrap; border-top:1px solid var(--line); margin-top:38px;}
+  .contact-cell{flex:1 1 240px; border-bottom:1px solid var(--line); padding:24px 20px 24px 0;}
+  .contact-cell .l{font-size:12.5px; color:var(--ink-soft); letter-spacing:.02em;}
+  .contact-cell .v{font-family:'Poppins'; font-size:16px; margin-top:6px;}
+  .contact-cell .v.ph{color:var(--amber-deep); font-style:italic; font-weight:400;}
+
+  footer{padding:26px 0; font-size:12px; color:var(--ink-soft); border-top:1px solid var(--line); text-align:center;}
+
+  ::selection{background:var(--amber); color:var(--white);}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--amber); outline-offset:2px;}
+  @media (prefers-reduced-motion: reduce){ html{scroll-behavior:auto;} }
+</style>
+</head>
+<body>
+
+<nav class="topnav" id="nav">
+  <div class="wrap">
+    <div class="brand">Paulo Proni</div>
+    <ul class="navlinks" id="navlinks">
+      <li><a href="#perfil">Perfil</a></li>
+      <li><a href="#trajetoria">Trajetória</a></li>
+      <li><a href="#cases">Cases</a></li>
+      <li><a href="#datacenter">Data Center</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<header class="hero">
+  <svg class="topo-wrap" viewBox="0 0 400 700" preserveAspectRatio="xMaxYMin meet" xmlns="http://www.w3.org/2000/svg">
+    <g stroke="#3A4552" stroke-width="1" fill="none">
+      <line x1="70" y1="40" x2="190" y2="120"/>
+      <line x1="190" y1="120" x2="160" y2="230"/>
+      <line x1="190" y1="120" x2="330" y2="170"/>
+      <line x1="160" y1="230" x2="260" y2="300"/>
+      <line x1="330" y1="170" x2="260" y2="300"/>
+      <line x1="260" y1="300" x2="210" y2="420"/>
+      <line x1="260" y1="300" x2="360" y2="400"/>
+      <line x1="210" y1="420" x2="130" y2="500"/>
+      <line x1="210" y1="420" x2="300" y2="520"/>
+      <line x1="360" y1="400" x2="300" y2="520"/>
+      <line x1="300" y1="520" x2="240" y2="620"/>
+    </g>
+    <g fill="#4A5A64">
+      <circle cx="70" cy="40" r="3.5"/><circle cx="190" cy="120" r="3.5"/><circle cx="160" cy="230" r="3.5"/>
+      <circle cx="330" cy="170" r="3.5"/><circle cx="360" cy="400" r="3.5"/><circle cx="130" cy="500" r="3.5"/>
+    </g>
+    <g fill="#B4772A">
+      <circle cx="260" cy="300" r="5"/><circle cx="210" cy="420" r="5"/><circle cx="300" cy="520" r="5"/><circle cx="240" cy="620" r="5"/>
+    </g>
+  </svg>
+  <div class="wrap hero-inner">
+    <div class="kicker micro">GERÊNCIA DE INFRAESTRUTURA, REDES &amp; SEGURANÇA</div>
+    <h1>Paulo Roberto Proni Ribeiro</h1>
+    <p class="sub">Portfólio executivo — 18 anos em infraestrutura, redes e segurança, com foco em posições de Gerência e Coordenação de TI.</p>
+    <div class="current-tag">
+      Atualmente <b>Head de Infraestrutura, Redes e Banco de Dados</b><br>
+      EmDia&nbsp;|&nbsp;Grupo Santander — desde mar/2024
+    </div>
+    <div class="stat-row">
+      <div class="stat-cell"><div class="n">18 anos</div><div class="l micro">DE TRAJETÓRIA EM TI, INFRAESTRUTURA E REDES</div></div>
+      <div class="stat-cell"><div class="n">R$ 4,8M</div><div class="l micro">ORÇAMENTO ANUAL SOB GESTÃO DIRETA</div></div>
+      <div class="stat-cell"><div class="n">2.000</div><div class="l micro">USUÁRIOS ATENDIDOS EM 5 SITES</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="perfil">
+  <div class="wrap">
+    <div class="shead"><span class="num micro">01</span><h2>Perfil profissional</h2></div>
+
+    <p class="intro"><span class="drop">Executivo de tecnologia</span> com 18 anos de atuação em infraestrutura, redes, segurança e banco de dados, hoje à frente da área de Infraestrutura, Redes e Banco de Dados na EmDia&nbsp;|&nbsp;Grupo Santander. Responde pelo orçamento anual da área, por uma operação distribuída em 5 sites e por um time direto e estendido, participando das definições de estratégia e investimento junto à diretoria e ao CTO. Construiu a carreira passando por arquitetura de soluções, prática Microsoft e SRE, com histórico de redução de custos, ganho de estabilidade operacional e elevação de maturidade em segurança e continuidade de negócio.</p>
+
+    <div class="scope-grid">
+      <div class="scope-cell"><div class="n">2.000</div><div class="l micro">USUÁRIOS ATENDIDOS</div></div>
+      <div class="scope-cell"><div class="n">5</div><div class="l micro">SITES / UNIDADES</div></div>
+      <div class="scope-cell"><div class="n">100</div><div class="l micro">SERVIDORES GERENCIADOS</div></div>
+      <div class="scope-cell"><div class="n">80 / 10</div><div class="l micro">SWITCHES / FIREWALLS</div></div>
+    </div>
+
+    <div class="env-strip">Ambiente principal em cloud privada e on-premises, com experiência prévia em GCP e Kubernetes. Orçamento anual de infraestrutura de R$ 4,8 milhões sob gestão direta.</div>
+
+    <div class="blocks">
+      <div class="block">
+        <h3><span class="node-mark"></span>Equipe e governança</h3>
+        <p>Lidera 7 profissionais diretos — 5 analistas de infraestrutura e redes e 2 de banco de dados — além de fornecedor dedicado (Wevy) com 3 analistas em regime 24x7. Participa diretamente das reuniões com diretoria e CTO para definição de estratégia e investimentos em tecnologia.</p>
+      </div>
+      <div class="block">
+        <h3><span class="node-mark"></span>Resultado recorrente</h3>
+        <p>Redução de 25% em custos via renegociação com fornecedores; sustentação de SLA médio de atendimento de infraestrutura e redes em 95%, com pico de 100% em determinados meses.</p>
+      </div>
+      <div class="block">
+        <h3><span class="node-mark"></span>Formação e idiomas</h3>
+        <p>MBA em Project Management (Anhembi Morumbi). Português nativo; inglês para leitura de documentação técnica.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="trajetoria">
+  <div class="wrap">
+    <div class="shead"><span class="num micro">02</span><h2>Trajetória profissional</h2></div>
+
+    <div class="tl">
+      <div class="tl-item">
+        <div class="period micro">2008 — 2011</div>
+        <div class="org">SONDA Brasil</div>
+        <div class="role ph">[cargo a preencher]</div>
+      </div>
+      <div class="tl-item">
+        <div class="period micro">2011 — 2013</div>
+        <div class="org">Grupo Cimcorp</div>
+        <div class="role ph">[cargo a preencher]</div>
+      </div>
+      <div class="tl-item">
+        <div class="period micro">2013 — 2021</div>
+        <div class="org">Telium Networks</div>
+        <div class="role">Arquiteto de Soluções — Head da prática Microsoft</div>
+      </div>
+      <div class="tl-item">
+        <div class="period micro">2021 — 2024</div>
+        <div class="org">Unico IDTech</div>
+        <div class="role">SRE — Site Reliability Engineer</div>
+      </div>
+      <div class="tl-item current">
+        <div class="period micro">2024 — ATUAL</div>
+        <div class="org">EmDia | Grupo Santander</div>
+        <div class="role">Head de Infraestrutura, Redes e Banco de Dados</div>
+      </div>
+    </div>
+
+    <div class="edu-row">
+      <div class="edu-item"><div class="deg">MBA em Project Management</div><div class="inst">Universidade Anhembi Morumbi</div><div class="per micro">2017 — 2018</div></div>
+      <div class="edu-item"><div class="deg">Tecnólogo em Gestão de Redes</div><div class="inst">UNINOVE</div><div class="per micro">2002 — 2003</div></div>
+      <div class="edu-item"><div class="deg">Técnico em Processamento de Dados</div><div class="inst">Escola Técnica Santa Izildinha</div><div class="per micro">1999 — 2001</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="cases">
+  <div class="wrap">
+    <div class="shead"><span class="num micro">03</span><h2>Cases</h2></div>
+
+    <div class="case">
+      <div class="case-title">SD-WAN Multisite</div>
+      <div class="case-context">Interligação de 5 sites via roteamento em nuvem</div>
+      <div class="pae">
+        <div class="pae-col"><div class="lab micro">PROBLEMA</div><p>Indisponibilidade mensal elevada e instabilidade de rede impactando a operação distribuída entre escritórios.</p></div>
+        <div class="pae-col"><div class="lab micro">AÇÃO</div><p>Implantação de arquitetura SD-WAN com roteamento em nuvem, interligando os 5 escritórios da operação.</p></div>
+        <div class="pae-col"><div class="lab micro">RESULTADO</div><p>Indisponibilidade praticamente eliminada e estabilidade elevada a patamar quase pleno, com economia direta de custos.</p></div>
+      </div>
+      <div class="metric-bar">
+        <div class="val start">80%</div><div class="val end">0%</div>
+        <div class="node start"></div><div class="node end"></div><div class="track"></div>
+        <div class="cap micro">INDISPONIBILIDADE MENSAL</div>
+      </div>
+      <div class="chips">
+        <span class="chip"><b>75% → 99%</b> estabilidade</span>
+        <span class="chip"><b>R$ 37 mil</b> economia gerada</span>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-title">Refresh de Switches</div>
+      <div class="case-context">Renovação completa do parque de switches</div>
+      <div class="pae">
+        <div class="pae-col"><div class="lab micro">PROBLEMA</div><p>Parque de switches tecnologicamente obsoleto, comprometendo estabilidade e alta disponibilidade da rede.</p></div>
+        <div class="pae-col"><div class="lab micro">AÇÃO</div><p>Planejamento e execução da renovação completa do parque de switches da operação.</p></div>
+        <div class="pae-col"><div class="lab micro">RESULTADO</div><p>Eliminação total da obsolescência tecnológica, com ganho consistente de estabilidade e alta disponibilidade.</p></div>
+      </div>
+      <div class="metric-bar">
+        <div class="val start">60%</div><div class="val end">95%</div>
+        <div class="node start"></div><div class="node end"></div><div class="track"></div>
+        <div class="cap micro">ESTABILIDADE / ALTA DISPONIBILIDADE</div>
+      </div>
+      <div class="chips"><span class="chip"><b>100%</b> da obsolescência tecnológica eliminada</span></div>
+    </div>
+
+    <div class="case">
+      <div class="case-title">Migração de fornecedor (Wevy) + Disaster Recovery</div>
+      <div class="case-context">Estruturação de continuidade para serviços críticos</div>
+      <div class="pae">
+        <div class="pae-col"><div class="lab micro">PROBLEMA</div><p>Estabilidade insuficiente em serviços críticos e tempo de resposta a incidentes acima do necessário.</p></div>
+        <div class="pae-col"><div class="lab micro">AÇÃO</div><p>Migração para o fornecedor Wevy com estruturação de plano de Disaster Recovery para os serviços críticos.</p></div>
+        <div class="pae-col"><div class="lab micro">RESULTADO</div><p>Estabilidade elevada, tempo de resposta a incidentes reduzido e economia com racionalização de fornecedores.</p></div>
+      </div>
+      <div class="metric-bar">
+        <div class="val start">2h</div><div class="val end">30min</div>
+        <div class="node start"></div><div class="node end"></div><div class="track"></div>
+        <div class="cap micro">MTTR — TEMPO MÉDIO DE RESPOSTA</div>
+      </div>
+      <div class="chips">
+        <span class="chip"><b>98%</b> estabilidade dos serviços críticos</span>
+        <span class="chip"><b>5h → 2h</b> SLO / SLI</span>
+        <span class="chip"><b>R$ 35 mil</b> economia com fornecedores</span>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-title">Segmentação de Rede</div>
+      <div class="case-context">Isolamento entre redes administrativa e operacional</div>
+      <div class="pae">
+        <div class="pae-col"><div class="lab micro">PROBLEMA</div><p>Redes administrativa e operacional sem isolamento adequado, com exposição a acessos indevidos.</p></div>
+        <div class="pae-col"><div class="lab micro">AÇÃO</div><p>Segmentação das redes com gestão de GPOs e restrições de acesso personalizadas por cliente.</p></div>
+        <div class="pae-col"><div class="lab micro">RESULTADO</div><p>Redução de falhas de rede e de acessos indevidos a dados, com governança de acesso por perfil.</p></div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-title">Programa Integrado de Segurança, Risco &amp; Continuidade</div>
+      <div class="case-context">Programa liderado internamente, estruturado em 9 frentes de trabalho</div>
+      <div class="fronts">
+        <div class="front-item">Zero Trust / 802.1X</div>
+        <div class="front-item">VPN Site-to-Site com fornecedores</div>
+        <div class="front-item">MFA / SSO em aplicações SaaS</div>
+        <div class="front-item">NGFW — Firewall de próxima geração (L7)</div>
+        <div class="front-item">Migração para RHEL na AWS</div>
+        <div class="front-item">Compliance de containers via Sysdig</div>
+        <div class="front-item">Rating externo de segurança (BitSight)</div>
+        <div class="front-item">Homologação de fornecedores — LGPD</div>
+        <div class="front-item">Continuidade de negócio — GCN / BCM</div>
+      </div>
+      <div class="chips" style="margin-top:24px;">
+        <span class="chip"><b>≥ 800</b> rating BitSight, por 7+ meses consecutivos</span>
+        <span class="chip"><b>≥ 90%</b> compliance de containers (Sysdig)</span>
+        <span class="chip"><b>95%</b> cobertura de logs</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="datacenter">
+  <div class="wrap">
+    <div class="shead"><span class="num micro">04</span><h2>Iniciativa estratégica em curso</h2></div>
+    <div class="status-tag micro">EM ANDAMENTO — FASE DE RFP / APRESENTAÇÃO À DIRETORIA</div>
+
+    <div class="case-title">Modernização de Data Center</div>
+    <div class="case-context">Migração para 2 polos de Data Center Tier III com balanceamento de carga</div>
+
+    <div class="pae">
+      <div class="pae-col"><div class="lab micro">CONTEXTO</div><p>Ambiente atual com custo de R$ 150 mil/mês, sem a redundância geográfica desejada para os serviços críticos da operação.</p></div>
+      <div class="pae-col"><div class="lab micro">PROPOSTA</div><p>Divisão da carga entre 2 polos Tier III — Equinix (centro de São Paulo) e Ascenty — com capacidade plena espelhada entre os sites.</p></div>
+      <div class="pae-col"><div class="lab micro">OBJETIVO</div><p>Alta disponibilidade, redundância, redução de CAPEX para OPEX, previsibilidade de custos e escalabilidade.</p></div>
+    </div>
+
+    <div class="chips">
+      <span class="chip"><b>2×</b> polos Tier III, capacidade plena espelhada</span>
+      <span class="chip"><b>198 vCPU</b> por polo</span>
+      <span class="chip"><b>120 TB</b> storage bruto (RAID 10) por polo</span>
+      <span class="chip"><b>1 Gbps</b> redundante por polo</span>
+      <span class="chip"><b>R$ 106—184 mil/mês</b> custo total projetado</span>
+    </div>
+
+    <p class="note">Escopo inclui migração de 5 bancos de dados SQL Server e 15 licenças Microsoft Windows Server, com replicação entre polos via internet e comunicação entre ambientes pela SD-WAN já implantada pela operação — sem necessidade de circuito dedicado.</p>
+  </div>
+</section>
+
+<section id="contato">
+  <div class="wrap">
+    <div class="shead"><span class="num micro">05</span><h2>Contato</h2></div>
+    <p style="color:var(--ink-soft); max-width:60ch; font-size:15px;">Disponível para conversas sobre posições de Gerência e Coordenação de TI, Infraestrutura, Redes e Segurança.</p>
+
+    <div class="contact-grid">
+      <div class="contact-cell"><div class="l micro">NOME</div><div class="v">Paulo Roberto Proni Ribeiro</div></div>
+      <div class="contact-cell"><div class="l micro">ASSINA COMO</div><div class="v">Paulo Proni</div></div>
+      <div class="contact-cell"><div class="l micro">E-MAIL</div><div class="v ph">[inserir e-mail]</div></div>
+      <div class="contact-cell"><div class="l micro">TELEFONE</div><div class="v ph">[inserir telefone]</div></div>
+      <div class="contact-cell"><div class="l micro">LINKEDIN</div><div class="v ph">[inserir link do perfil]</div></div>
+      <div class="contact-cell"><div class="l micro">LOCALIZAÇÃO</div><div class="v ph">[inserir cidade]</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>Paulo Proni · Portfólio Executivo</footer>
+
+<script>
+  var nav = document.getElementById('nav');
+  window.addEventListener('scroll', function(){
+    if(window.scrollY > 40){ nav.classList.add('solid'); } else { nav.classList.remove('solid'); }
+  });
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navlinks');
+  toggle.addEventListener('click', function(){ links.classList.toggle('open'); });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){ links.classList.remove('open'); });
+  });
+</script>
+
+</body>
+</html>
